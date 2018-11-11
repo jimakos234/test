@@ -1,0 +1,41 @@
+server:
+  port: 8600
+  address: ${SERVER_IP:localhost}
+  servlet:
+    context-path: /test-ms
+
+spring:
+  application:
+    name: test-ms
+  jmx:
+    enabled: false
+
+endpoints:
+  jmx:
+    enabled: false
+
+logging:
+  level:
+    tt:
+      test:
+        testId:
+          testApp: "debug"
+  path: C:/LOGS/test/
+
+---
+
+spring:
+  profiles: dev
+server:
+  port: 8090
+  servlet:
+    context-path: /test-ms
+
+logging:
+  level:
+    tt:
+      test:
+        testId:
+          testApp: "info"
+  path: C:/LOGS/test/
+

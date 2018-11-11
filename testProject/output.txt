@@ -1,0 +1,2 @@
+
+Question 4: Suggestion(occurrences=Occurrences(name=Suggestion for all 3 together, occur={Fantasy=9, Action=3}), averageMovieMin=80.92153679653678)

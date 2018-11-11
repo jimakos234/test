@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- CONSOLE APPENDER -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>
+				%d{dd-MM-yyyy HH:mm:ss} [%thread] %-5level %class{0}.%M:%L - %msg%n%ex{30}
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!--<root level="info">-->
+		<!--<appender-ref ref="STDOUT"/>-->
+	<!--</root>-->
+
+	<!-- FILE APPENDER -->
+	<appender name="LOGFILE"
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH:-LOGS/test}/test-ms.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>UTF-8</charset>
+			<Pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %class{0}.%M:%L - %msg%n%ex{30}
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>
+				${LOG_PATH:-LOGS/test}/archived/test-ms/test-ms.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<!--Loggers-->
+	<root level="INFO">
+		<appender-ref ref="LOGFILE" />
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+</configuration>
